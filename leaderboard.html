@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hall of Stars — Sophie's Stardust</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page">
+
+  <nav class="nav">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Sophie's Stardust</a>
+    <a class="nav-right" href="index.html">← Home</a>
+  </nav>
+
+  <div class="hero" style="padding-bottom:1rem">
+    <div class="hero-sparkle">✦ · · ✦ · · ✦</div>
+    <h1 style="font-size:1.7rem">Hall of <em>Stars</em></h1>
+    <p class="hero-sub">The greatest minds in the galaxy</p>
+  </div>
+
+  <div class="lb-tabs">
+    <button class="lb-tab active" data-cat="all">All</button>
+    <button class="lb-tab" data-cat="books">Books</button>
+    <button class="lb-tab" data-cat="musical-theatre">Theatre</button>
+    <button class="lb-tab" data-cat="movies">Movies</button>
+  </div>
+
+  <div class="lb-list" id="lb-list">
+    <div class="loading">Loading scores…</div>
+  </div>
+
+  <div class="spacer"></div>
+  <nav class="bottom-bar">
+    <a class="bb-item" href="index.html"><span class="bb-icon">⌂</span><span>Home</span></a>
+    <a class="bb-item active" href="leaderboard.html"><span class="bb-icon">◉</span><span>Scores</span></a>
+  </nav>
+
+</div>
+<script src="config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/leaderboard.js"></script>
+</body>
+</html>
