@@ -1,0 +1,716 @@
+{
+  "categories": [
+    {
+      "id": "books",
+      "name": "Books",
+      "icon": "📚",
+      "iconClass": "cat-icon-books",
+      "quizzes": [
+        {
+          "id": "books-general",
+          "name": "General Book Knowledge",
+          "description": "Classic and contemporary reads",
+          "questions": [
+            {
+              "q": "Who wrote the Harry Potter series?",
+              "options": [
+                "J.R.R. Tolkien",
+                "C.S. Lewis",
+                "J.K. Rowling",
+                "Roald Dahl"
+              ],
+              "answer": 2,
+              "fact": "J.K. Rowling wrote the seven-book series between 1997 and 2007. Harry Potter and the Philosopher's Stone was rejected by 12 publishers before being accepted!"
+            },
+            {
+              "q": "What is the name of the dragon guarding the treasure in The Hobbit?",
+              "options": [
+                "Ancalagon",
+                "Smaug",
+                "Drogon",
+                "Vermithrax"
+              ],
+              "answer": 1,
+              "fact": "Smaug is one of literature's most famous dragons. He has lived under the Lonely Mountain for 171 years by the time Bilbo arrives."
+            },
+            {
+              "q": "In which novel does the character Atticus Finch appear?",
+              "options": [
+                "Of Mice and Men",
+                "The Great Gatsby",
+                "To Kill a Mockingbird",
+                "Brave New World"
+              ],
+              "answer": 2,
+              "fact": "Harper Lee's Pulitzer Prize-winning novel was published in 1960 and has sold over 45 million copies worldwide."
+            },
+            {
+              "q": "Who wrote Pride and Prejudice?",
+              "options": [
+                "Charlotte Brontë",
+                "Jane Austen",
+                "George Eliot",
+                "Emily Brontë"
+              ],
+              "answer": 1,
+              "fact": "Jane Austen published Pride and Prejudice in 1813. It opens with one of literature's most famous lines about a man in possession of a fortune."
+            },
+            {
+              "q": "What is the first book in C.S. Lewis's Chronicles of Narnia series?",
+              "options": [
+                "Prince Caspian",
+                "The Magician's Nephew",
+                "The Lion, the Witch and the Wardrobe",
+                "The Horse and His Boy"
+              ],
+              "answer": 2,
+              "fact": "Although The Magician's Nephew comes first chronologically, The Lion, the Witch and the Wardrobe was published first in 1950 and is considered the series opener."
+            },
+            {
+              "q": "Who wrote Charlie and the Chocolate Factory?",
+              "options": [
+                "Lewis Carroll",
+                "A.A. Milne",
+                "Roald Dahl",
+                "E.B. White"
+              ],
+              "answer": 2,
+              "fact": "Roald Dahl published Charlie and the Chocolate Factory in 1964. The character of Willy Wonka was partly inspired by his own love of sweets as a child."
+            },
+            {
+              "q": "In which novel does a girl follow a white rabbit down a hole?",
+              "options": [
+                "Through the Looking-Glass",
+                "Alice's Adventures in Wonderland",
+                "The Wind in the Willows",
+                "Peter Pan"
+              ],
+              "answer": 1,
+              "fact": "Lewis Carroll published Alice's Adventures in Wonderland in 1865. He originally told the story to Alice Liddell, the daughter of a colleague, during a rowing trip."
+            },
+            {
+              "q": "What is the name of Sherlock Holmes's address?",
+              "options": [
+                "10 Downing Street",
+                "4 Privet Drive",
+                "221B Baker Street",
+                "14 Bow Street"
+              ],
+              "answer": 2,
+              "fact": "221B Baker Street is one of the most famous fictional addresses in the world. The Sherlock Holmes Museum is now located there and receives thousands of letters addressed to Holmes every year."
+            },
+            {
+              "q": "Who wrote The Secret Garden?",
+              "options": [
+                "Louisa May Alcott",
+                "Frances Hodgson Burnett",
+                "Beatrix Potter",
+                "E. Nesbit"
+              ],
+              "answer": 1,
+              "fact": "Frances Hodgson Burnett published The Secret Garden in 1911. She also wrote Little Lord Fauntleroy and A Little Princess."
+            },
+            {
+              "q": "Which Shakespeare play features the line 'To be or not to be, that is the question'?",
+              "options": [
+                "Macbeth",
+                "King Lear",
+                "Romeo and Juliet",
+                "Hamlet"
+              ],
+              "answer": 3,
+              "fact": "This is the opening of Hamlet's most famous soliloquy in Act 3, Scene 1. Hamlet contemplates whether it is better to endure suffering or take action against it."
+            },
+            {
+              "q": "Who is the author of The Hunger Games trilogy?",
+              "options": [
+                "Veronica Roth",
+                "Suzanne Collins",
+                "Stephenie Meyer",
+                "James Dashner"
+              ],
+              "answer": 1,
+              "fact": "Suzanne Collins was inspired to write The Hunger Games while channel-surfing between reality TV and news coverage of the Iraq War."
+            },
+            {
+              "q": "What school does Matilda attend in Roald Dahl's Matilda?",
+              "options": [
+                "Hogwarts",
+                "Crunchem Hall",
+                "Sunnybrook School",
+                "St Brutus's"
+              ],
+              "answer": 1,
+              "fact": "Crunchem Hall is run by the terrifying Miss Trunchbull. The kindly Miss Honey provides the contrast that helps Matilda flourish."
+            },
+            {
+              "q": "Which dystopian novel features a society controlled by 'the Party' and its leader 'Big Brother'?",
+              "options": [
+                "Brave New World",
+                "The Handmaid's Tale",
+                "Nineteen Eighty-Four",
+                "Fahrenheit 451"
+              ],
+              "answer": 2,
+              "fact": "George Orwell published Nineteen Eighty-Four in 1949. The phrase 'Big Brother is watching you' has entered everyday language as a warning about surveillance."
+            },
+            {
+              "q": "In Anne of Green Gables, where does Anne come to live?",
+              "options": [
+                "Nova Scotia",
+                "Ontario",
+                "Prince Edward Island",
+                "New Brunswick"
+              ],
+              "answer": 2,
+              "fact": "L.M. Montgomery set her beloved novel on Prince Edward Island in Canada, where she grew up. The farmhouse 'Green Gables' is a real heritage site you can visit today."
+            },
+            {
+              "q": "What is the subtitle of Mary Shelley's Frankenstein?",
+              "options": [
+                "A Gothic Tale",
+                "The Modern Prometheus",
+                "The New Adam",
+                "A Warning to Mankind"
+              ],
+              "answer": 1,
+              "fact": "Mary Shelley wrote Frankenstein; or, The Modern Prometheus in 1818 when she was just 18 years old, after a ghost story competition with Percy Shelley and Lord Byron."
+            }
+          ]
+        },
+        {
+          "id": "books-harry-potter-i",
+          "name": "Harry Potter I",
+          "description": "Beginner quiz for Potterheads",
+          "questions": [
+            {
+              "q": "When Harry arrives at the station near Platform 9 and Three Quarters, which family does he encounter?",
+              "options": [
+                "The Weasleys",
+                "The Malfoys",
+                "The Grangers",
+                "The Potters"
+              ],
+              "answer": 1,
+              "fact": "During filming, Daniel Radcliffe and Rupert Grint kept messing up in takes so they could keep eating the sweets on the train."
+            },
+            {
+              "q": "Harry is locked up in house where...?",
+              "options": [
+                "The Room under the Fridge",
+                "The Cupboard under the Stairs",
+                "The House behind the Scone",
+                "The Cupboard behind the Stairs"
+              ],
+              "answer": 1,
+              "fact": "The first letter from Hogwarts to Harry was addressed to him specifically at: \"Mr H. Potter, The Cupboard under the Stairs, 4 Privet Drive, Little Whinging, Surrey\". This showed the Dursleys that the magical world knew exactly how they were treating him."
+            },
+            {
+              "q": "When Harry and Ron first meet Hermione, what is the very first thing she says?",
+              "options": [
+                "Is that a chocolate frog?",
+                "Are you really Harry Potter?",
+                "Hello, boys.",
+                "Has anyone seen a toad? Neville's lost one."
+              ],
+              "answer": 3,
+              "fact": "In both the book and movie, she points out that Ron has dirt on his nose, which is a subtle detail that sets up her attentive, sometimes pedantic nature."
+            },
+            {
+              "q": "Which famous trio were nearly not friends?",
+              "options": [
+                "Draco, Crabbe and Goyle",
+                "Parvaiti, Cho, Padma",
+                "Hermione, Harry and Ron",
+                "McGonagall, Dumbledore, Snape"
+              ],
+              "answer": 2,
+              "fact": "Because Hermione came across as so arrogant and bossy, Harry and Ron actually disliked her immediately and didn't become true friends with her until after they saved her from the troll on Halloween."
+            },
+            {
+              "q": "Who announces that the Dursley family are moving?",
+              "options": [
+                "Petunia Dursley",
+                "Vernon Dursley",
+                "Dudley Dursley",
+                "Harry Potter"
+              ],
+              "answer": 1,
+              "fact": "Vernon Dursley states, 'That's it, we're moving!' to his wife and Dudley as he cannot stand Harry's letters anymore."
+            },
+            {
+              "q": "What book did Hermione say she read when she first enters the Great Hall?",
+              "options": [
+                "Hogwarts: A History",
+                "Hogwarts: The Future",
+                "Hogwarts: The True Past",
+                "Hogwarts: A Present to You"
+              ],
+              "answer": 0,
+              "fact": "Despite her reputation for infallible memory, Hermione frequently forgot the specific details of what she read or couldn't apply them to new, magical situations, highlighting her humanity rather than just her intelligence."
+            },
+            {
+              "q": "Who pretends to faint during the Halloween feast?",
+              "options": [
+                "Harry",
+                "Snape",
+                "Ron",
+                "Quirrell"
+              ],
+              "answer": 3,
+              "fact": "Quirrell’s faint was a calculated diversion, not a sign of fear. As he explains later, he has a special gift with trolls, making his performance of being terrified by one particularly deceptive. He had already personally lured the troll into the castle himself."
+            },
+            {
+              "q": "What are Hermione, Ron and Harry often referred to as?",
+              "options": [
+                "The Three Musketeers",
+                "The Wizarding Misfits",
+                "The Little Troublemakers",
+                "The Golden Trio"
+              ],
+              "answer": 3,
+              "fact": "The phrase was coined by the Harry Potter fandom to represent the trio's friendship as the \"gold standard\" of the series. Rowling actually used the term \"HRH\" (Harry, Ron, Hermione) for short in her personal writing, while screenwriter Steve Kloves simply used \"the trio\" in the film scripts."
+            },
+            {
+              "q": "Who do the Golden Trio suspect is planning on taking the Sorcerer's Stone?",
+              "options": [
+                "Hagrid",
+                "Snape",
+                "McGonagall",
+                "Quirrell"
+              ],
+              "answer": 1,
+              "fact": "When Snape’s leg was mauled, the trio assumed it was from trying to get past the three-headed dog, Fluffy. In reality, he was bitten while trying to stop Quirrell, who was acting on Voldemort's orders.  While the trio focused on Snape as the villain due to his \"swooping\" nature, they completely overlooked Quirrell, who was the real threat."
+            },
+            {
+              "q": "What chapter of a book did Hermione find information about the Sorcerer's Stone?",
+              "options": [
+                "Chapter 13, 'Gems and Jewels'",
+                "Chapter 13, 'Nicholas Flamel'",
+                "Chapter 10, 'Live Forever'",
+                "Chapter 9, 'Stones'"
+              ],
+              "answer": 1,
+              "fact": "Hermione actually possessed the answer weeks before, having checked out Magick Moste Evile or a similar heavy alchemy tome for \"light reading\"."
+            },
+            {
+              "q": "What names do Ron call Hermione throughout the whole book?",
+              "options": [
+                "A nightmare/that know-it-all",
+                "A nightmare/a monster",
+                "Mione",
+                "A dream"
+              ],
+              "answer": 0,
+              "fact": "Throughout the first book, Ron calls her: \"A nightmare\" (referring to her after she corrects him in Charms class). \"That know-it-all\" (implying this, as he often talks about how she acts to Harry). \nHis most famous line about her in this book, spoken to Harry after she corrects his pronunciation of Wingardium Leviosa, is: \"She's a nightmare, honestly. No wonder she hasn't got any friends\"."
+            },
+            {
+              "q": "When Harry is in Hospital Wing, what sweets is he eating?",
+              "options": [
+                "Chocolate Frogs",
+                "Toffee Apple",
+                "Rubber Snakes",
+                "Bertie Bott's Every Flavour Beans"
+              ],
+              "answer": 3,
+              "fact": "Dumbledore tells Harry that when he was young, he had the misfortune of encountering a vomit-flavored bean. Despite his caution, Dumbledore decides to try a golden-brown bean from Harry’s box, thinking it to be a safe, \"nice toffee,\" only to find it is earwax-flavored. The story notes that Bertie Bott's Every Flavor Beans were created by mistake. The inventor was trying to create tasty sweets from food, but accidentally included a dirty pair of socks in the experiment."
+            },
+            {
+              "q": "Who visits Harry in the Hospital Wing?",
+              "options": [
+                "Draco and Seamus",
+                "Ron and Hermione",
+                "Ron and Neville",
+                "Hermione and Parvati"
+              ],
+              "answer": 1,
+              "fact": "While many fans associate the scene where Dumbledore visits him with the movie, in the book, it is actually Ron and Hermione who visit Harry in the hospital wing first to give him candy. The scene with Dumbledore eating the earwax bean occurs during his final visit before the end-of-year feast."
+            },
+            {
+              "q": "What does Hagrid give Harry as an end-of-year gift?",
+              "options": [
+                "A photo album",
+                "A camera",
+                "Sweets",
+                "A jump rope"
+              ],
+              "answer": 0,
+              "fact": "The photo album included pictures of his father and mother, which moved because they were magic. It is a sentimental gift and Hagrid begins to cry."
+            },
+            {
+              "q": "What do the Dursleys not know that Harry cannot do but plans to at home?",
+              "options": [
+                "Make a birthday cake",
+                "Send letters to Ron and Hermione",
+                "Write a song",
+                "Perform magic"
+              ],
+              "answer": 3,
+              "fact": "Hagrid reminds him and the end of the book that he is not permitted to perform any magic over the holidays, but the Dursleys don't know that, so Harry cheekily plans to play some pranks."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "musical-theatre",
+      "name": "Musical Theatre",
+      "icon": "🎭",
+      "iconClass": "cat-icon-theatre",
+      "quizzes": [
+        {
+          "id": "theatre-general",
+          "name": "West End & Broadway",
+          "description": "Songs, shows and stars of the stage",
+          "questions": [
+            {
+              "q": "Which musical features the song 'Defying Gravity'?",
+              "options": [
+                "Hamilton",
+                "Wicked",
+                "Les Misérables",
+                "Matilda"
+              ],
+              "answer": 1,
+              "fact": "'Defying Gravity' closes Act One of Wicked. The musical is based on Gregory Maguire's 1995 novel and tells the untold story of the witches of Oz."
+            },
+            {
+              "q": "In which musical does the character Jean Valjean appear?",
+              "options": [
+                "The Phantom of the Opera",
+                "Miss Saigon",
+                "Les Misérables",
+                "Sweeney Todd"
+              ],
+              "answer": 2,
+              "fact": "Les Misérables is based on Victor Hugo's 1862 novel. The musical opened in London in 1985 and has been running in the West End almost continuously ever since."
+            },
+            {
+              "q": "Which musical is told primarily in hip-hop and rap?",
+              "options": [
+                "Rent",
+                "Hamilton",
+                "In the Heights",
+                "Six"
+              ],
+              "answer": 1,
+              "fact": "Lin-Manuel Miranda wrote Hamilton after reading Ron Chernow's biography of Alexander Hamilton on a holiday. It opened on Broadway in 2015 and won 11 Tony Awards."
+            },
+            {
+              "q": "Who composed The Phantom of the Opera?",
+              "options": [
+                "Stephen Sondheim",
+                "Claude-Michel Schönberg",
+                "Andrew Lloyd Webber",
+                "Tim Rice"
+              ],
+              "answer": 2,
+              "fact": "Andrew Lloyd Webber's Phantom opened in London's West End in 1986. It became Broadway's longest-running show, closing after 35 years in April 2023."
+            },
+            {
+              "q": "Which musical features the songs 'Memory' and 'Mr Mistoffelees'?",
+              "options": [
+                "Starlight Express",
+                "Cats",
+                "Sunset Boulevard",
+                "Joseph"
+              ],
+              "answer": 1,
+              "fact": "Cats is based on T.S. Eliot's poetry collection Old Possum's Book of Practical Cats. 'Memory' became one of the best-known songs in musical theatre."
+            },
+            {
+              "q": "In which musical do orphan children sing 'Food, Glorious Food'?",
+              "options": [
+                "Annie",
+                "Oliver!",
+                "Billy Elliot",
+                "Bugsy Malone"
+              ],
+              "answer": 1,
+              "fact": "Oliver! is based on Charles Dickens's Oliver Twist. Lionel Bart wrote all the music and lyrics, and it won the Academy Award for Best Picture in its 1968 film adaptation."
+            },
+            {
+              "q": "Which musical is based on songs by ABBA?",
+              "options": [
+                "Jersey Boys",
+                "Rock of Ages",
+                "Mamma Mia!",
+                "Beautiful"
+              ],
+              "answer": 2,
+              "fact": "Mamma Mia! opened in London's West End in 1999. The story was written around 22 ABBA songs by playwright Catherine Johnson."
+            },
+            {
+              "q": "What does Billy Elliot dream of becoming in the musical of the same name?",
+              "options": [
+                "A boxer",
+                "A footballer",
+                "A ballet dancer",
+                "A singer"
+              ],
+              "answer": 2,
+              "fact": "Billy Elliot the Musical opened in London in 2005. Elton John wrote the music, and the show won four Olivier Awards in its first year."
+            },
+            {
+              "q": "Which musical tells the story of six wives of Henry VIII?",
+              "options": [
+                "Wolf Hall",
+                "Anne of the Thousand Days",
+                "Six",
+                "Crown"
+              ],
+              "answer": 2,
+              "fact": "Six was written by Toby Marlow and Lucy Moss while they were students at Cambridge University. It opened in the West End in 2019 and on Broadway in 2021."
+            },
+            {
+              "q": "Which musical features the song 'Don't Cry For Me Argentina'?",
+              "options": [
+                "Chicago",
+                "Evita",
+                "The Peron Story",
+                "Cabaret"
+              ],
+              "answer": 1,
+              "fact": "Evita tells the story of Eva Perón, First Lady of Argentina. Andrew Lloyd Webber and Tim Rice wrote the musical, and it opened in London in 1978."
+            },
+            {
+              "q": "In which city is the musical Rent set?",
+              "options": [
+                "Los Angeles",
+                "Chicago",
+                "New York City",
+                "Boston"
+              ],
+              "answer": 2,
+              "fact": "Rent is set in Manhattan's East Village in the early 1990s. Jonathan Larson based it on Puccini's opera La Bohème and tragically died the night before its Off-Broadway premiere."
+            },
+            {
+              "q": "Which musical is set in 1920s Chicago, centring on two women accused of murder?",
+              "options": [
+                "Cabaret",
+                "Roxie",
+                "Chicago",
+                "All That Jazz"
+              ],
+              "answer": 2,
+              "fact": "Chicago is based on real 1920s cases. The musical opened on Broadway in 1975, but its 1996 revival has made it Broadway's longest-running American musical."
+            },
+            {
+              "q": "What is the name of the hero in Joseph and the Amazing Technicolor Dreamcoat?",
+              "options": [
+                "Joshua",
+                "Jacob",
+                "Joseph",
+                "Jonah"
+              ],
+              "answer": 2,
+              "fact": "Joseph and the Amazing Technicolor Dreamcoat was Andrew Lloyd Webber and Tim Rice's first collaboration. It began as a 15-minute school cantata in 1968."
+            },
+            {
+              "q": "Which character does Elphaba become known as at the end of Wicked?",
+              "options": [
+                "The Good Witch of the North",
+                "Glinda the Good",
+                "The Wicked Witch of the West",
+                "The Wicked Witch of the East"
+              ],
+              "answer": 2,
+              "fact": "Elphaba's name is derived from the initials of L. Frank Baum, the author of The Wonderful Wizard of Oz. The musical reimagines the classic story from her perspective."
+            },
+            {
+              "q": "Which famous musical features the characters Marius, Cosette and Éponine?",
+              "options": [
+                "Les Misérables",
+                "The Phantom of the Opera",
+                "Miss Saigon",
+                "Notre-Dame de Paris"
+              ],
+              "answer": 0,
+              "fact": "Victor Hugo created these beloved characters in his 1862 masterpiece. Éponine's unrequited love for Marius gives us one of the show's most emotional songs, 'On My Own'."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies",
+      "name": "Movies",
+      "icon": "🎬",
+      "iconClass": "cat-icon-movies",
+      "quizzes": [
+        {
+          "id": "movies-general",
+          "name": "Movie Magic",
+          "description": "Blockbusters, classics and everything in between",
+          "questions": [
+            {
+              "q": "Who directed the 1997 film Titanic?",
+              "options": [
+                "Steven Spielberg",
+                "James Cameron",
+                "Peter Jackson",
+                "Christopher Nolan"
+              ],
+              "answer": 1,
+              "fact": "James Cameron spent so much time diving to the actual Titanic wreck for research that he's one of the most experienced deep-sea divers in the world."
+            },
+            {
+              "q": "Which film features the line 'May the Force be with you'?",
+              "options": [
+                "Star Trek",
+                "Star Wars",
+                "Interstellar",
+                "2001: A Space Odyssey"
+              ],
+              "answer": 1,
+              "fact": "Star Wars: A New Hope was released in 1977. George Lucas was so convinced it would fail that he went on holiday when it opened — and came back to find massive queues around the block."
+            },
+            {
+              "q": "Who voiced Woody in the Toy Story films?",
+              "options": [
+                "Robin Williams",
+                "Jim Carrey",
+                "Tom Hanks",
+                "Billy Crystal"
+              ],
+              "answer": 2,
+              "fact": "Tom Hanks has voiced Woody in all four Toy Story films. His brother Jim Hanks voiced Woody in spin-off shorts and video games."
+            },
+            {
+              "q": "Which Disney film features the song 'Let It Go'?",
+              "options": [
+                "Tangled",
+                "Brave",
+                "Moana",
+                "Frozen"
+              ],
+              "answer": 3,
+              "fact": "'Let It Go' won the Academy Award for Best Original Song in 2014. Idina Menzel's recording became one of the best-selling singles of that year."
+            },
+            {
+              "q": "What is the name of the fish Marlin is searching for in Finding Nemo?",
+              "options": [
+                "Dory",
+                "Nemo",
+                "Gill",
+                "Squirt"
+              ],
+              "answer": 1,
+              "fact": "Finding Nemo won the Academy Award for Best Animated Feature in 2004. Marine biologists have noted that in real life, clownfish actually change sex — so Marlin would have become Nemo's mother!"
+            },
+            {
+              "q": "Who played Hermione Granger in the Harry Potter films?",
+              "options": [
+                "Bonnie Wright",
+                "Emma Thompson",
+                "Emma Watson",
+                "Helena Bonham Carter"
+              ],
+              "answer": 2,
+              "fact": "Emma Watson was 9 years old when she auditioned for the role, having no previous professional acting experience. She went on to study at Brown University and Oxford."
+            },
+            {
+              "q": "Which film became the highest-grossing film of all time when released in 2009?",
+              "options": [
+                "Transformers",
+                "The Dark Knight",
+                "Avatar",
+                "2012"
+              ],
+              "answer": 2,
+              "fact": "Avatar held the record until Avengers: Endgame briefly overtook it in 2019. Avatar then reclaimed the top spot after its 2022 re-release."
+            },
+            {
+              "q": "Who directed the Lord of the Rings film trilogy?",
+              "options": [
+                "Steven Spielberg",
+                "Ridley Scott",
+                "Peter Jackson",
+                "David Fincher"
+              ],
+              "answer": 2,
+              "fact": "Peter Jackson filmed all three Lord of the Rings movies simultaneously in New Zealand. The Return of the King won all 11 Academy Awards it was nominated for — a record."
+            },
+            {
+              "q": "What is the name of the young hero in Home Alone?",
+              "options": [
+                "Kevin McCallister",
+                "Macaulay Barnes",
+                "Danny Torrance",
+                "Pete Beaufort"
+              ],
+              "answer": 0,
+              "fact": "Home Alone was released in 1990 and became the highest-grossing comedy film of all time at that point. Macaulay Culkin was 10 years old when it was filmed."
+            },
+            {
+              "q": "Which animated film features the character Moana?",
+              "options": [
+                "Raya and the Last Dragon",
+                "Encanto",
+                "Moana",
+                "Luca"
+              ],
+              "answer": 2,
+              "fact": "Disney's Moana is set in ancient Polynesia. The filmmakers worked closely with Pacific Islander cultural consultants, and the film features original songs by Lin-Manuel Miranda."
+            },
+            {
+              "q": "In which film does a toy cowboy and space ranger become rivals then friends?",
+              "options": [
+                "Toy Story 2",
+                "A Bug's Life",
+                "Toy Story",
+                "Monsters, Inc."
+              ],
+              "answer": 2,
+              "fact": "Toy Story (1995) was the first feature-length film made entirely with computer-generated imagery. Pixar rendered each frame at a resolution that required up to 90 hours of computing time."
+            },
+            {
+              "q": "Which film features the character Jack Sparrow?",
+              "options": [
+                "Pirates of Penzance",
+                "Pirates of the Caribbean",
+                "Treasure Island",
+                "Master and Commander"
+              ],
+              "answer": 1,
+              "fact": "Johnny Depp based his portrayal of Jack Sparrow partly on rock star Keith Richards of the Rolling Stones. Keith Richards later appeared as Jack's father in the third film."
+            },
+            {
+              "q": "Which 2019 South Korean film became the first non-English-language film to win the Oscar for Best Picture?",
+              "options": [
+                "The Handmaiden",
+                "Train to Busan",
+                "Parasite",
+                "Burning"
+              ],
+              "answer": 2,
+              "fact": "Parasite, directed by Bong Joon-ho, won four Academy Awards at the 2020 ceremony. Bong famously said in his acceptance speech, 'Once you overcome the one-inch-tall barrier of subtitles, you'll be introduced to so many more amazing films.'"
+            },
+            {
+              "q": "Who plays the character Katniss Everdeen in The Hunger Games films?",
+              "options": [
+                "Shailene Woodley",
+                "Jennifer Lawrence",
+                "Kristen Stewart",
+                "Emma Stone"
+              ],
+              "answer": 1,
+              "fact": "Jennifer Lawrence was 21 when the first Hunger Games film was released in 2012. She had won the Academy Award for Best Actress just a year later for Silver Linings Playbook."
+            },
+            {
+              "q": "Which Pixar film features a rat who dreams of becoming a chef in Paris?",
+              "options": [
+                "The Incredibles",
+                "WALL-E",
+                "Up",
+                "Ratatouille"
+              ],
+              "answer": 3,
+              "fact": "Ratatouille won the Academy Award for Best Animated Feature in 2008. The film's title is both the name of the main character (Rémy) and a traditional French vegetable dish."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
