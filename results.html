@@ -78,7 +78,7 @@
 <script src="config.js"></script>
 <script src="js/app.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const rawMeta  = sessionStorage.getItem('quizResult_meta');
   const rawScore = sessionStorage.getItem('quizResult_score');
   if (!rawMeta || !rawScore) { window.location.href = 'index.html'; return; }
@@ -93,12 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const { title, sub } = getResultTitle(score, total, categoryId);
   document.getElementById('result-title').textContent = title;
   document.getElementById('result-sub').textContent   = sub;
-
-  // Play Again
   document.getElementById('play-again-btn').href = `quiz.html${quizUrl}`;
 
-  // Check for duplicate on name blur
-  const nameInput = document.getElementById('player-name');
+  const nameInput   = document.getElementById('player-name');
   const alreadyNote = document.getElementById('already-note');
   const submitBtn   = document.getElementById('submit-btn');
   const firstBadge  = document.getElementById('first-badge');
@@ -107,24 +104,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedName = loadPlayerName();
   if (savedName) nameInput.value = savedName;
 
+  // Pre-fetch attempts ONCE on page load — reused for both duplicate check and submit
+  // This means submit only needs a single PUT, not a GET + PUT
+  let cachedAttempts = null;
+  async function getAttempts() {
+    if (!cachedAttempts) cachedAttempts = await fetchAttempts();
+    return cachedAttempts;
+  }
+
+  function isAlreadyPlayed(attempts, name) {
+    const n = sanitiseName(name).toLowerCase();
+    return attempts.some(a => a.name.toLowerCase() === n && a.quizId === quizId);
+  }
+
+  function markAlreadyPlayed() {
+    alreadyNote.classList.add('show');
+    firstBadge.style.display = 'none';
+    submitBtn.setAttribute('disabled', true);
+    submitBtn.style.opacity = '0.4';
+  }
+
+  function markFirstAttempt() {
+    alreadyNote.classList.remove('show');
+    firstBadge.style.display = '';
+    submitBtn.removeAttribute('disabled');
+    submitBtn.style.opacity = '';
+  }
+
+  // Start background pre-fetch immediately; if cookie name is set, run duplicate check too
+  getAttempts().then(attempts => {
+    const name = nameInput.value.trim();
+    if (name && isAlreadyPlayed(attempts, name)) markAlreadyPlayed();
+  });
+
+  // Duplicate check on name blur (uses cached data — no extra API call)
   nameInput.addEventListener('blur', async () => {
     const name = nameInput.value.trim();
     if (!name) return;
-    const played = await hasPlayedQuiz(name, quizId);
-    if (played) {
-      alreadyNote.classList.add('show');
-      firstBadge.style.display = 'none';
-      submitBtn.setAttribute('disabled', true);
-      submitBtn.style.opacity = '0.4';
-    } else {
-      alreadyNote.classList.remove('show');
-      firstBadge.style.display = '';
-      submitBtn.removeAttribute('disabled');
-      submitBtn.style.opacity = '';
-    }
+    const attempts = await getAttempts();
+    isAlreadyPlayed(attempts, name) ? markAlreadyPlayed() : markFirstAttempt();
   });
 
-  // Submit
+  // Submit — single PUT using already-cached attempts
   let submitted = false;
   submitBtn.addEventListener('click', async () => {
     if (submitted) return;
@@ -135,16 +156,37 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.textContent = 'Submitting…';
     submitBtn.setAttribute('disabled', true);
 
-    const res = await submitAttempt({ name, quizId, categoryId, category, quiz: quizName, score, total });
-    savePlayerName(name);
+    const attempts  = await getAttempts();
+    const sanitised = sanitiseName(name);
+    const isFirst   = !isAlreadyPlayed(attempts, name);
+
+    if (isFirst) {
+      attempts.push({
+        name: sanitised, quizId, categoryId, category,
+        quiz: quizName, score, total,
+        date: new Date().toISOString()
+      });
+      const ok = await saveAttempts(attempts);
+      if (!ok) {
+        // Network error — reset so they can try again
+        submitted = false;
+        attempts.pop(); // remove the entry we just added
+        submitBtn.textContent = '⚠ Failed — tap to retry';
+        submitBtn.removeAttribute('disabled');
+        submitBtn.style.background = '#8B2020';
+        submitBtn.style.color = '#ffcccc';
+        return;
+      }
+      savePlayerName(sanitised);
+    }
 
     submitBtn.classList.add('hidden');
     nameInput.classList.add('hidden');
     firstBadge.style.display = 'none';
 
     const msg = document.getElementById('submit-msg');
-    if (!res.firstAttempt) {
-      msg.textContent = 'Your first attempt already counts — it\'s on the board!';
+    if (!isFirst) {
+      msg.textContent = "Your first attempt already counts — it's on the board!";
       msg.style.color = 'var(--text-dim)';
     }
     msg.classList.add('show');
