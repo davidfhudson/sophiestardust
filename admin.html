@@ -224,7 +224,9 @@ body {
 .q-opt.correct { color: var(--teal); }
 .q-opt.correct .q-opt-letter { color: var(--teal); }
 .q-fact { font-size: 11px; color: var(--dim); font-style: italic; margin-top: 0.3rem; padding-top: 0.35rem; border-top: 1px solid var(--border); }
-.q-actions { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
+.q-actions { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; align-items: flex-end; }
+.q-edit-btn { font-size: 11px; font-family: var(--fb); font-weight: 500; color: var(--violet2); background: #7B2FBE18; border: 1px solid #7B2FBE44; border-radius: 5px; padding: 3px 8px; cursor: pointer; white-space: nowrap; }
+.q-edit-btn:hover { background: #7B2FBE33; }
 
 /* ── Add/Edit question form ──────────────────── */
 #q-editor {
@@ -674,7 +676,7 @@ function renderMain() {
         ${q.fact ? `<div class="q-fact">💡 ${esc(q.fact)}</div>` : ''}
       </div>
       <div class="q-actions">
-        <button class="btn-icon" onclick="openEditor(${i})" title="Edit">✎</button>
+        <button class="q-edit-btn" onclick="openEditor(${i})">✎ Edit</button>
         <button class="btn-icon" onclick="moveQ(${i},-1)" title="Move up" ${i===0?'disabled':''}>↑</button>
         <button class="btn-icon" onclick="moveQ(${i},1)"  title="Move down" ${i===quiz.questions.length-1?'disabled':''}>↓</button>
         <button class="btn-icon" style="color:var(--red)" onclick="deleteQ(${i})" title="Delete">✕</button>
