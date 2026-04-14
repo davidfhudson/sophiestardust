@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     isAlreadyPlayed(attempts, name) ? markAlreadyPlayed() : markFirstAttempt();
   });
 
-  // Submit — single PUT using already-cached attempts
+  // Submit — POST to server; server enforces first-attempt rule
   let submitted = false;
   submitBtn.addEventListener('click', async () => {
     if (submitted) return;
@@ -156,36 +156,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     submitBtn.textContent = 'Submitting…';
     submitBtn.setAttribute('disabled', true);
 
-    const attempts  = await getAttempts();
-    const sanitised = sanitiseName(name);
-    const isFirst   = !isAlreadyPlayed(attempts, name);
+    const { ok, firstAttempt } = await submitAttempt({
+      name, quizId, categoryId, category,
+      quiz: quizName, score, total
+    });
 
-    if (isFirst) {
-      attempts.push({
-        name: sanitised, quizId, categoryId, category,
-        quiz: quizName, score, total,
-        date: new Date().toISOString()
-      });
-      const ok = await saveAttempts(attempts);
-      if (!ok) {
-        // Network error — reset so they can try again
-        submitted = false;
-        attempts.pop(); // remove the entry we just added
-        submitBtn.textContent = '⚠ Failed — tap to retry';
-        submitBtn.removeAttribute('disabled');
-        submitBtn.style.background = '#8B2020';
-        submitBtn.style.color = '#ffcccc';
-        return;
-      }
-      savePlayerName(sanitised);
+    if (!ok) {
+      submitted = false;
+      submitBtn.textContent = '⚠ Failed — tap to retry';
+      submitBtn.removeAttribute('disabled');
+      submitBtn.style.background = '#8B2020';
+      submitBtn.style.color = '#ffcccc';
+      return;
     }
 
+    savePlayerName(sanitiseName(name));
     submitBtn.classList.add('hidden');
     nameInput.classList.add('hidden');
     firstBadge.style.display = 'none';
 
     const msg = document.getElementById('submit-msg');
-    if (!isFirst) {
+    if (!firstAttempt) {
       msg.textContent = "Your first attempt already counts — it's on the board!";
       msg.style.color = 'var(--text-dim)';
     }
