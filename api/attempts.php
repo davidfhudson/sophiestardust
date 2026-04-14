@@ -3,6 +3,14 @@
 // POST /api/attempts.php        — submits a new attempt (server enforces first-attempt rule)
 //                                 returns { "ok": true, "firstAttempt": true|false }
 
+ini_set('display_errors', 0);
+set_exception_handler(function (Throwable $e) {
+    http_response_code(500);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(['error' => $e->getMessage(), 'file' => basename($e->getFile()), 'line' => $e->getLine()]);
+    exit;
+});
+
 require_once __DIR__ . '/_db.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
