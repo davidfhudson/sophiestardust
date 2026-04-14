@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results — Sophie's Stardust</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .first-attempt-badge {
+      display:inline-flex; align-items:center; gap:6px;
+      background:#7B2FBE22; border:1px solid #7B2FBE55;
+      border-radius:99px; padding:4px 12px;
+      font-size:11px; color:var(--text-muted);
+      margin-bottom:0.5rem;
+    }
+    .already-played-note {
+      font-family:var(--font-d); font-style:italic;
+      font-size:13px; color:var(--text-dim);
+      padding:0.6rem 0.9rem;
+      background:var(--bg-deep);
+      border:1px solid var(--border);
+      border-radius:var(--r-sm);
+      display:none;
+    }
+    .already-played-note.show { display:block; }
+    .lb-pct { font-size:13px; font-weight:500; color:var(--teal); }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="nav">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Sophie's Stardust</a>
+    <a class="nav-right" href="index.html">Home</a>
+  </nav>
+
+  <div class="results-hero">
+    <div class="results-stars">✦ ✦ ✦</div>
+    <div class="results-title" id="result-title">Well done!</div>
+    <div class="results-sub"   id="result-sub"></div>
+    <div class="score-pill"    id="result-score">— / —</div><br>
+    <div class="score-label">Final Score</div>
+  </div>
+
+  <!-- Submit to leaderboard -->
+  <div style="padding: 0.9rem 1.25rem 0">
+    <div class="card" style="padding:1rem 1.1rem" id="submit-card">
+      <div class="lb-submit-title">✦ Add your name to the Hall of Stars</div>
+      <div class="first-attempt-badge" id="first-badge">✦ First attempt — this counts!</div>
+      <input  class="lb-name-input" id="player-name" type="text"
+              placeholder="Enter your name…" maxlength="24" autocomplete="off">
+      <div class="already-played-note" id="already-note">
+        You've already submitted a score for this quiz — only your first attempt counts.
+        Your previous score stands on the leaderboard.
+      </div>
+      <button class="btn btn-gold" style="width:100%;text-align:center;margin-top:0.1rem" id="submit-btn">
+        Submit Score
+      </button>
+      <div class="submit-msg" id="submit-msg">✦ You're on the board!</div>
+    </div>
+  </div>
+
+  <div class="results-actions">
+    <a id="play-again-btn" class="btn btn-secondary" href="#">Play Again</a>
+    <a class="btn btn-primary" href="index.html">More Quizzes →</a>
+  </div>
+  <div style="text-align:center;padding:0 1.25rem 1rem">
+    <a href="leaderboard.html" style="font-size:12px;color:var(--text-dim);text-decoration:none">View Hall of Stars →</a>
+  </div>
+
+  <div class="spacer"></div>
+  <nav class="bottom-bar">
+    <a class="bb-item"        href="index.html"><span class="bb-icon">⌂</span><span>Home</span></a>
+    <a class="bb-item active" href="leaderboard.html"><span class="bb-icon">◉</span><span>Scores</span></a>
+  </nav>
+
+</div>
+<script src="config.js"></script>
+<script src="js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const rawMeta  = sessionStorage.getItem('quizResult_meta');
+  const rawScore = sessionStorage.getItem('quizResult_score');
+  if (!rawMeta || !rawScore) { window.location.href = 'index.html'; return; }
+
+  const meta   = JSON.parse(rawMeta);
+  const result = JSON.parse(rawScore);
+  const { score, total } = result;
+  const { quizId, quizName, categoryId, category, quizUrl } = meta;
+
+  // Populate display
+  document.getElementById('result-score').textContent = `${score} / ${total}`;
+  const { title, sub } = getResultTitle(score, total, categoryId);
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-sub').textContent   = sub;
+  document.getElementById('play-again-btn').href = `quiz.html${quizUrl}`;
+
+  const nameInput   = document.getElementById('player-name');
+  const alreadyNote = document.getElementById('already-note');
+  const submitBtn   = document.getElementById('submit-btn');
+  const firstBadge  = document.getElementById('first-badge');
+
+  // Pre-fill name from cookie
+  const savedName = loadPlayerName();
+  if (savedName) nameInput.value = savedName;
+
+  // Pre-fetch attempts ONCE on page load — reused for both duplicate check and submit
+  // This means submit only needs a single PUT, not a GET + PUT
+  let cachedAttempts = null;
+  async function getAttempts() {
+    if (!cachedAttempts) cachedAttempts = await fetchAttempts();
+    return cachedAttempts;
+  }
+
+  function isAlreadyPlayed(attempts, name) {
+    const n = sanitiseName(name).toLowerCase();
+    return attempts.some(a => a.name.toLowerCase() === n && a.quizId === quizId);
+  }
+
+  function markAlreadyPlayed() {
+    alreadyNote.classList.add('show');
+    firstBadge.style.display = 'none';
+    submitBtn.setAttribute('disabled', true);
+    submitBtn.style.opacity = '0.4';
+  }
+
+  function markFirstAttempt() {
+    alreadyNote.classList.remove('show');
+    firstBadge.style.display = '';
+    submitBtn.removeAttribute('disabled');
+    submitBtn.style.opacity = '';
+  }
+
+  // Start background pre-fetch immediately; if cookie name is set, run duplicate check too
+  getAttempts().then(attempts => {
+    const name = nameInput.value.trim();
+    if (name && isAlreadyPlayed(attempts, name)) markAlreadyPlayed();
+  });
+
+  // Duplicate check on name blur (uses cached data — no extra API call)
+  nameInput.addEventListener('blur', async () => {
+    const name = nameInput.value.trim();
+    if (!name) return;
+    const attempts = await getAttempts();
+    isAlreadyPlayed(attempts, name) ? markAlreadyPlayed() : markFirstAttempt();
+  });
+
+  // Submit — single PUT using already-cached attempts
+  let submitted = false;
+  submitBtn.addEventListener('click', async () => {
+    if (submitted) return;
+    const name = nameInput.value.trim();
+    if (!name) { nameInput.focus(); return; }
+
+    submitted = true;
+    submitBtn.textContent = 'Submitting…';
+    submitBtn.setAttribute('disabled', true);
+
+    const attempts  = await getAttempts();
+    const sanitised = sanitiseName(name);
+    const isFirst   = !isAlreadyPlayed(attempts, name);
+
+    if (isFirst) {
+      attempts.push({
+        name: sanitised, quizId, categoryId, category,
+        quiz: quizName, score, total,
+        date: new Date().toISOString()
+      });
+      const ok = await saveAttempts(attempts);
+      if (!ok) {
+        // Network error — reset so they can try again
+        submitted = false;
+        attempts.pop(); // remove the entry we just added
+        submitBtn.textContent = '⚠ Failed — tap to retry';
+        submitBtn.removeAttribute('disabled');
+        submitBtn.style.background = '#8B2020';
+        submitBtn.style.color = '#ffcccc';
+        return;
+      }
+      savePlayerName(sanitised);
+    }
+
+    submitBtn.classList.add('hidden');
+    nameInput.classList.add('hidden');
+    firstBadge.style.display = 'none';
+
+    const msg = document.getElementById('submit-msg');
+    if (!isFirst) {
+      msg.textContent = "Your first attempt already counts — it's on the board!";
+      msg.style.color = 'var(--text-dim)';
+    }
+    msg.classList.add('show');
+  });
+});
+</script>
+</body>
+</html>

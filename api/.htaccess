@@ -1,0 +1,8 @@
+# Block direct HTTP access to internal files.
+# The public endpoints (attempts.php, quizzes.php) are still reachable.
+
+Options -Indexes
+
+<FilesMatch "^(_db|config(\.example)?)\.php$">
+    Require all denied
+</FilesMatch>

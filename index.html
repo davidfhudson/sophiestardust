@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sophie's Stardust</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .random-tile {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0.95rem 1.1rem; cursor:pointer; text-decoration:none;
+      background: linear-gradient(135deg, #1a0a2e 0%, #1A1A2E 100%);
+      border: 1.5px solid #7B2FBE55;
+    }
+    .random-tile:hover { border-color: var(--violet); }
+    .random-icon-wrap {
+      width:42px; height:42px; border-radius:10px;
+      background: #7B2FBE33;
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; flex-shrink:0;
+    }
+    .random-name { font-family:var(--font-d); font-size:15px; font-weight:600; color:var(--gold); }
+    .random-desc { font-size:11px; color:var(--violet); margin-top:1px; }
+    .lb-pct { font-size:13px; font-weight:500; color:var(--teal); }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="nav">
+    <a class="nav-logo" href="index.html"><span class="star">✦</span> Sophie's Stardust</a>
+    <a class="nav-right" href="leaderboard.html">Hall of Stars</a>
+  </nav>
+
+  <!-- ── CATEGORY VIEW ──────────────────────────────────── -->
+  <div id="view-categories">
+    <div class="hero">
+      <div class="hero-sparkle">✦ · · ✦ · · ✦</div>
+      <h1>Think you know<br><em>your stuff?</em></h1>
+      <p class="hero-sub">Quizzes by Sophie, for everyone</p>
+    </div>
+
+    <div class="section-label">Choose a category</div>
+    <div class="categories" id="categories-list">
+      <div class="loading">Loading quizzes…</div>
+    </div>
+    <div style="height:1.25rem"></div>
+
+    <div class="section-label">Hall of Stars</div>
+    <div style="padding:0 1.25rem 1rem">
+      <div class="card" style="padding:0.9rem 1.1rem" id="lb-preview">
+        <div style="font-family:var(--font-d);font-size:13px;font-weight:600;color:var(--gold);margin-bottom:0.6rem">✦ Top players</div>
+        <div class="loading" style="padding:0.4rem 0">Loading…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── QUIZ LIST VIEW ─────────────────────────────────── -->
+  <div id="view-quizzes" class="hidden">
+    <button class="back-btn" id="back-btn">← All categories</button>
+    <div class="section-label" id="quiz-list-label"></div>
+    <div class="quiz-list" id="quiz-list"></div>
+    <div style="height:1.5rem"></div>
+  </div>
+
+  <div class="spacer"></div>
+  <nav class="bottom-bar">
+    <a class="bb-item active" href="index.html"><span class="bb-icon">⌂</span><span>Home</span></a>
+    <a class="bb-item" href="leaderboard.html"><span class="bb-icon">◉</span><span>Scores</span></a>
+  </nav>
+
+</div>
+<script src="config.js"></script>
+<script src="js/app.js"></script>
+<script>
+async function init() {
+  const data = await loadQuizData();
+
+  // ── Render category tiles ──
+  const catList = document.getElementById('categories-list');
+  catList.innerHTML = '';
+  data.categories.forEach(cat => {
+    const el = document.createElement('a');
+    el.className = 'cat-card card';
+    el.href = '#';
+    el.innerHTML = `
+      <div class="cat-left">
+        <div class="cat-icon-wrap ${cat.iconClass}">${cat.icon}</div>
+        <div>
+          <div class="cat-name">${cat.name}</div>
+          <div class="cat-count">${cat.quizzes.length} quiz${cat.quizzes.length !== 1 ? 'zes' : ''} available</div>
+        </div>
+      </div>
+      <div class="cat-arrow">›</div>
+    `;
+    el.addEventListener('click', e => { e.preventDefault(); showQuizList(cat); });
+    catList.appendChild(el);
+  });
+
+  // ── Mini leaderboard preview ──
+  const attempts = await fetchAttempts();
+  const preview  = document.getElementById('lb-preview');
+  const rows     = buildLeaderboard(attempts);
+
+  if (rows.length === 0) {
+    preview.innerHTML = `
+      <div style="font-family:var(--font-d);font-size:13px;font-weight:600;color:var(--gold);margin-bottom:0.4rem">✦ Top players</div>
+      <div style="font-family:var(--font-d);font-style:italic;font-size:12px;color:var(--text-dim)">No scores yet — be the first!</div>`;
+  } else {
+    let html = `<div style="font-family:var(--font-d);font-size:13px;font-weight:600;color:var(--gold);margin-bottom:0.6rem">✦ Top players</div>`;
+    const medals = ['🥇','🥈','🥉'];
+    rows.slice(0, 3).forEach((p, i) => {
+      html += `<div style="display:flex;align-items:center;gap:0.6rem;padding:0.3rem 0;border-bottom:1px solid var(--border)">
+        <span style="font-size:15px">${medals[i]}</span>
+        <span style="flex:1;font-size:13px;color:var(--text)">${escHtml(p.name)}</span>
+        <span style="font-size:12px;color:var(--teal);font-weight:500">${fmtPct(p.pct)}</span>
+        <span style="font-size:10px;color:var(--text-dim)">${p.quizzes}q</span>
+      </div>`;
+    });
+    html += `<div style="text-align:right;margin-top:0.5rem">
+      <a href="leaderboard.html" style="font-size:11px;color:var(--text-dim);text-decoration:none">View all →</a>
+    </div>`;
+    preview.innerHTML = html;
+  }
+}
+
+function showQuizList(cat) {
+  document.getElementById('view-categories').classList.add('hidden');
+  document.getElementById('view-quizzes').classList.remove('hidden');
+  document.getElementById('quiz-list-label').textContent = cat.name;
+
+  const list = document.getElementById('quiz-list');
+  list.innerHTML = '';
+
+  // ── Random Mix tile (only if 2+ quizzes, so the pool is actually mixed) ──
+  if (cat.quizzes.length >= 2) {
+    const totalQ = cat.quizzes.reduce((n, q) => n + q.questions.length, 0);
+    const el = document.createElement('a');
+    el.className = 'quiz-list-card card random-tile';
+    el.href = `quiz.html?category=${cat.id}&quiz=random`;
+    el.innerHTML = `
+      <div class="cat-left">
+        <div class="random-icon-wrap">✦</div>
+        <div>
+          <div class="random-name">Random Mix</div>
+          <div class="random-desc">15 questions from across all ${cat.name.toLowerCase()} quizzes</div>
+        </div>
+      </div>
+      <div class="cat-arrow" style="color:var(--gold)">›</div>
+    `;
+    list.appendChild(el);
+  }
+
+  // ── Individual quizzes ──
+  cat.quizzes.forEach(quiz => {
+    const el = document.createElement('a');
+    el.className = 'quiz-list-card card';
+    el.href = `quiz.html?category=${cat.id}&quiz=${quiz.id}`;
+    el.innerHTML = `
+      <div>
+        <div class="quiz-list-name">${quiz.name}</div>
+        <div class="quiz-list-desc">${quiz.description} · ${quiz.questions.length} questions</div>
+      </div>
+      <div class="cat-arrow">›</div>
+    `;
+    list.appendChild(el);
+  });
+}
+
+document.getElementById('back-btn').addEventListener('click', () => {
+  document.getElementById('view-quizzes').classList.add('hidden');
+  document.getElementById('view-categories').classList.remove('hidden');
+});
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
