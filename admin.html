@@ -449,7 +449,7 @@ function checkPw(e) {
 // ── Load data ─────────────────────────────────
 async function loadFromSite() {
   try {
-    const res = await fetch('/api/quizzes.php?t=' + Date.now());
+    const res = await fetch('api/quizzes.php?t=' + Date.now());
     if (!res.ok) throw new Error();
     data = await res.json();
     renderTree();
@@ -787,7 +787,7 @@ async function saveToServer() {
   clean.categories.forEach(c => delete c._open);
 
   try {
-    const res = await fetch('/api/quizzes.php', {
+    const res = await fetch('api/quizzes.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

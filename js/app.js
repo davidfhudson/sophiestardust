@@ -4,7 +4,7 @@
 
 async function fetchAttempts() {
   try {
-    const res = await fetch('/api/attempts.php');
+    const res = await fetch('api/attempts.php');
     if (!res.ok) return [];
     const data = await res.json();
     return data.attempts || [];
@@ -14,7 +14,7 @@ async function fetchAttempts() {
 // Submit — server enforces the first-attempt rule and returns { ok, firstAttempt }
 async function submitAttempt(entry) {
   try {
-    const res = await fetch('/api/attempts.php', {
+    const res = await fetch('api/attempts.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -81,7 +81,7 @@ function buildLeaderboard(attempts, filterCategoryId = null) {
 // ── Quiz data loader ───────────────────────────────────────
 
 async function loadQuizData() {
-  const res = await fetch('/api/quizzes.php');
+  const res = await fetch('api/quizzes.php');
   return await res.json();
 }
 
