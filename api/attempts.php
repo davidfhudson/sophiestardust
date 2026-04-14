@@ -3,12 +3,21 @@
 // POST /api/attempts.php        — submits a new attempt (server enforces first-attempt rule)
 //                                 returns { "ok": true, "firstAttempt": true|false }
 
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 set_exception_handler(function (Throwable $e) {
     http_response_code(500);
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode(['error' => $e->getMessage(), 'file' => basename($e->getFile()), 'line' => $e->getLine()]);
     exit;
+});
+register_shutdown_function(function () {
+    $err = error_get_last();
+    if ($err && in_array($err['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR])) {
+        http_response_code(500);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(['fatal' => $err['message'], 'file' => basename($err['file']), 'line' => $err['line']]);
+    }
 });
 
 require_once __DIR__ . '/_db.php';
