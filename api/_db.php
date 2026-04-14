@@ -37,6 +37,6 @@ function json_response(mixed $data, int $status = 200): never {
 
 function sanitise_name(string $name): string {
     $name = preg_replace('/[<>&\'"]/u', '', $name);
-    $name = mb_substr(trim($name), 0, 24);
+    $name = substr(trim($name), 0, 24);
     return $name !== '' ? $name : 'Anonymous';
 }
